@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -420,4 +421,428 @@ function atualizarNumeros() {
 
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha de RPG</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="ficha" id="ficha">
+    <h1>Ficha de Personagem</h1>
+    <div class="layout">
+        <div class = "painel painel-esquerdo">
+
+            <div class="secao">
+
+                <h2>Dados Básicos</h2>
+
+                <div class="campo">
+                    <label>Nome:</label>
+                    <input type="text">
+                </div>
+
+                <div class="campo">
+                    <label>Raça:</label>
+                    <input type="text">
+                </div>
+
+                <div class="campo">
+                    <label>Idade:</label>
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="secao"> 
+                <h2>Status</h2>
+
+                <div class="campo">
+                    <label>Vida :</label>
+
+                    <button onclick="diminuirVida()">-</button>
+                    <input type="number" id="vidaAtual" readonly>
+                    <span>/</span>
+                    <input type="number" id="vidaMaxima" readonly>
+
+                    <button onclick="aumentarVida()">+</button>
+
+                </div>
+                <div class="campo">
+                    <label>Sanidade:</label>
+
+                    <button onclick="diminuirSanidade()">-</button>
+                    <input type="number" id="sanidadeAtual" readonly>
+                    <span>/</span>
+                    <input type="number" id="sanidadeMaxima" readonly>
+                    <button onclick="aumentarSanidade()">+</button>
+
+                </div>
+            </div>
+
+            <div class="secao">
+            <h2>Atributos</h2>
+
+                <div class="campo">
+                    <label>Força:</label>
+                    <input type="number" value="0">
+                </div>
+                <div class="campo">
+                    <label>Destreza:</label>
+                    <input type="number" value="0">
+                </div>
+                <div class="campo">
+                    <label>Agilidade:</label>
+                    <input type="number" value="0">
+                </div>
+                <div class="campo">
+                    <label>Percepção:</label>
+                    <input type="number" value="0">
+                </div>
+                <div class="campo">
+                    <label>Carisma:</label>
+                    <input type="number" value="0">
+                </div>
+                <div class="campo">
+                    <label>Força de vontade:</label>
+                    <input type="number" id="forcaVontade" value="0" oninput="calcularStatus()">
+                </div>
+                <div class="campo">
+                    <label>Constituição:</label>
+                    <input type="number" id="constituicao" value="0" oninput="calcularStatus()">
+                </div>
+                                        <!-- Dentro do painel direito ou esquerdo da ficha -->
+
+                <div class="controle-habilidades">
+                     <button onclick="abrirHabilidades()">Habilidades</button>
+                 <!--     <button onclick="abrirInventario()">Inventário</button> -->
+                </div>
+
+            </div>
+        </div>
+
+        <div class="painel painel-direito">
+
+            <div class="secao">
+                <h2>Perícias</h2>
+
+            <div class="controle-pericias">
+                <button onclick="novaPericia()">+ Nova Perícia</button>
+            </div>
+
+
+                <div class="grupo-pericia">
+                    <h3>Força</h3>
+
+                    <div id="periciasForca"></div>
+
+                </div>
+                <div class="grupo-pericia">
+                    <h3>Destreza</h3>
+
+                    <div id="periciasDestreza"></div>
+
+                </div>
+
+                <div class="grupo-pericia">
+                    <h3>Agilidade</h3>
+
+                    <div id="periciasAgilidade"></div>
+
+                </div>
+                <div class="grupo-pericia">
+                    <h3>Percepção</h3>
+
+                    <div id="periciasPercepcao"></div>
+
+                </div>
+                <div class="grupo-pericia">
+                    <h3>Carisma</h3>
+
+                    <div id="periciasCarisma"></div>
+
+                </div>
+                <div class="grupo-pericia">
+                    <h3>Força de vontade</h3>
+
+                    <div id="periciasForcaVontade"></div>
+
+                </div>
+                <div class="grupo-pericia">
+                    <h3>Constituição</h3>
+
+                    <div id="periciasConstituicao"></div>
+
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <div id="modalPericia" class="modal">
+    <div class="modal-content">
+        <h3>Nova Perícia</h3>
+        <label for="nomePericia">Nome da perícia:</label>
+        <input type="text" id="nomePericia" placeholder="Ex: Acrobacia">
+
+        <label for="atributoPericia">Atributo:</label>
+        <select id="atributoPericia">
+            <option value="Forca">Força</option>
+            <option value="Destreza">Destreza</option>
+            <option value="Agilidade">Agilidade</option>
+            <option value="Percepcao">Percepção</option>
+            <option value="Carisma">Carisma</option>
+            <option value="ForcaVontade">Força de vontade</option>
+            <option value="Constituicao">Constituição</option>
+        </select>
+
+        <div class="modal-buttons">
+            <button id="cancelModal">Cancelar</button>
+            <button id="addPericiaModal">Adicionar</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<div id="telaHabilidades" class="tela">
+    
+    <h2>Habilidades</h2>
+    <button onclick="voltarFicha()">Voltar</Button>
+
+<input 
+    type="text" 
+    placeholder="Buscar Habilidade"
+    oninput="buscarHabilidade(this.value)">
+
+
+    <div id="listaHabilidades">
+
+
+    </div>
+    <button onclick="novaHabilidade()">Adicionar Nova Habilidade</button>
+</div>
+
+
+<!-- <div id="telaInventario" class="tela">
+
+  <h2>Inventário</h2>
+  <button onclick="voltarFicha()">Voltar</button>
+  <button onclick="abrirModalItem()">+ Adicionar Item</button>
+
+  <div class="abas-inventario">
+    <button onclick="abrirAba('itens')">Itens</button>
+    <button onclick="abrirAba('arsenal')">Arsenal</button>
+  </div>
+
+  <div id="aba-itens" class="aba ativa">
+    <div class="grid-inventario" id="listaItens"></div>
+  </div>
+
+  <div id="aba-arsenal" class="aba">
+    <div class="grid-inventario" id="listaArsenal"></div>
+  </div>
+
+</div>
+
+<div id="modalVisualizarItem" class="modal">
+  <div class="modal-content">
+    <h3>Item</h3>
+    <img id="imgItem" style="width:100px;margin:auto;">
+    <textarea id="descVisualizacao" readonly></textarea>
+    <button onclick="fecharModalVisualizarItem()">Fechar</button>
+  </div>
+</div>
+
+<div id="modalNovoItem" class="modal">
+  <div class="modal-content">
+    <h2>Novo Item</h2>
+
+    <input type="text" id="nomeItem" placeholder="Nome do item">
+
+    <select id="tipoItem">
+      <option value="">Selecione o tipo</option>
+      <option value="item">Item</option>
+      <option value="arsenal">Arsenal</option>
+    </select>
+
+    <textarea id="descricaoItem" placeholder="Descrição"></textarea>
+
+    <input type="file" id="imagemItem" accept="image/*">
+
+    <button onclick="salvarItem()">Salvar</button>
+    <button onclick="fecharModalItem()">Cancelar</button>
+  </div>
+</div> -->
+
+</div>
+
+
+<script>
+    function aumentarVida() {
+        let atual = document.getElementById("vidaAtual");
+        let max = document.getElementById("vidaMaxima");
+
+        if (Number(atual.value) < Number(max.value)) {
+            atual.value = Number(atual.value) + 1;
+        }
+    }
+
+    function diminuirVida() {
+        let atual = document.getElementById("vidaAtual");
+
+        if (atual.value > 0) {
+            atual.value = Number(atual.value) - 1;
+        }
+    }
+    function aumentarSanidade(){
+        let atual = document.getElementById("sanidadeAtual");
+        let max = document.getElementById("sanidadeMaxima");
+
+        if (Number(atual.value)<Number(max.value)){
+            atual.value = Number(atual.value) + 1;
+        }
+    }
+
+    function diminuirSanidade(){
+        let atual = document.getElementById("sanidadeAtual");
+
+        if(atual.value>0){
+            atual.value = Number(atual.value) -1;
+        }
+    }
+
+    function calcularStatus() {
+        let constituicao = Number(document.getElementById("constituicao").value);
+        let forcaVontade = Number(document.getElementById("forcaVontade").value);
+
+        let vidaMaxima = constituicao + 10;
+        let sanidade = forcaVontade + 5;
+
+        document.getElementById("vidaMaxima").value = vidaMaxima;
+        document.getElementById("sanidadeMaxima").value = sanidade;
+
+        // Se vida atual estiver vazia, inicializa
+        let vidaAtual = document.getElementById("vidaAtual");
+        if (vidaAtual.value === "") {
+            vidaAtual.value = vidaMaxima;
+        }
+
+        let sanidadeAtual = document.getElementById("sanidadeAtual");
+        if (sanidadeAtual.value === "") {
+            sanidadeAtual.value = sanidade;
+        }
+    }
+    calcularStatus();
+
+    function capitalize(texto) {
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
+}
+
+    // Abrir modal
+function novaPericia() {
+    document.getElementById("modalPericia").style.display = "flex";
+}
+
+// Cancelar modal
+document.getElementById("cancelModal").addEventListener("click", () => {
+    document.getElementById("modalPericia").style.display = "none";
+});
+
+// Adicionar perícia
+document.getElementById("addPericiaModal").addEventListener("click", () => {
+    const nome = document.getElementById("nomePericia").value.trim();
+    const atributo = document.getElementById("atributoPericia").value;
+
+    if (!nome) {
+        alert("Digite o nome da perícia!");
+        return;
+    }
+
+    const container = document.getElementById("pericias" + atributo);
+    if (!container) return;
+
+    const linha = document.createElement("div");
+    linha.className = "linha-pericias";
+
+    linha.innerHTML = `
+        <span class="bonus">+1</span>
+        <span class="nome-pericia">${nome}</span>
+        <div class="nivel-container">
+            <span>Nv.</span>
+            <input type="number" value="1" min="1" oninput="atualizarBonus(this)">
+        </div>
+    `;
+
+    container.appendChild(linha);
+
+    // Limpar e fechar modal
+    document.getElementById("nomePericia").value = "";
+    document.getElementById("atributoPericia").selectedIndex = 0;
+    document.getElementById("modalPericia").style.display = "none";
+});
+
+
+function atualizarBonus(inputNivel) {
+    const nivel = Number(inputNivel.value);
+
+    const bonus = Math.floor(nivel / 5) + 1;
+
+    const linha = inputNivel.closest(".linha-pericias");
+
+
+    const bonusSpan = linha.querySelector(".bonus");
+    bonusSpan.textContent = `+${bonus}`;
+}
+//Habiidades em diante
+function abrirHabilidades(){
+    document.getElementById("ficha").style.display="none" //esconde a ficha
+    document.getElementById("telaHabilidades").style.display = "block" // mostra habilidades
+}
+function voltarFicha() {
+    document.getElementById("ficha").style.display = "flex"; // mostra ficha
+    document.getElementById("telaHabilidades").style.display = "none"; // esconde habilidades
+}
+let linhas = document.querySelectorAll(".linha-habilidade");
+linhas.forEach((linha, index) => {
+    linha.querySelector(".numero").textContent = index + 1 + ".";
+});
+
+
+function novaHabilidade() {
+    const lista = document.getElementById("listaHabilidades");
+    const numero = lista.children.length + 1;
+
+    const div = document.createElement("div");
+    div.className = "linha-habilidade";
+
+    div.innerHTML = `
+        <span class="numero">${numero}.</span>
+        <textarea placeholder="Descreva a habilidade"></textarea>
+        <button onclick="removerHabilidade(this)">Excluir</button>
+    `;
+
+    lista.appendChild(div);
+}
+function removerHabilidade(botao) {
+    const linha = botao.parentElement;
+    linha.remove();
+    atualizarNumeros();
+}
+
+function atualizarNumeros() {
+    const habilidades = document.querySelectorAll(".linha-habilidade");
+    habilidades.forEach((linha, index) => {
+        linha.querySelector(".numero").textContent = (index + 1) + ".";
+    });
+}
+</script>
+
+
+</body>
+>>>>>>> origin/main
 </html>
